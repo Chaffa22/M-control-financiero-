@@ -1,0 +1,29 @@
+# Mi Control Financiero — primera versión
+
+## Qué incluye
+- Panel de balance disponible y resumen mensual.
+- Cuentas: Efectivo, Mercado Pago, Banco Nación, Naranja X, Personal Pay y Prex.
+- Registro de ingresos, gastos y transferencias.
+- Tarjetas de crédito, compras y pagos.
+- Registro básico de deudas y objetivos de ahorro.
+- Guardado automático local en el almacenamiento del navegador.
+- Exportación e importación manual de respaldos JSON.
+
+## Importante sobre los respaldos
+El guardado local automático mantiene los datos en el mismo navegador/dispositivo. No protege contra pérdida, robo, rotura o borrado de datos del navegador.
+Para conservar una copia fuera del teléfono, usá **Exportar copia** y guardá el archivo en otra ubicación (por ejemplo, una memoria externa o un servicio de almacenamiento que elijas).
+Esta primera versión no puede crear silenciosamente archivos periódicos en Android; el respaldo externo requiere que el usuario confirme dónde guardarlo.
+
+## Cómo probarla desde el celular
+Para instalarla como PWA y habilitar el modo sin conexión, los archivos deben estar publicados en un alojamiento HTTPS estático.
+Una opción es GitHub Pages:
+1. Crear una cuenta o iniciar sesión en GitHub desde Chrome.
+2. Crear un repositorio nuevo y subir `index.html`, `manifest.webmanifest` y `sw.js`.
+3. En Settings > Pages, activar publicación desde la rama principal y carpeta raíz.
+4. Abrir la dirección HTTPS que GitHub Pages proporciona en Chrome Android.
+5. Menú de Chrome > Instalar aplicación (o Añadir a pantalla principal).
+
+También podés abrir `index.html` para revisar el prototipo, pero el modo instalable y el funcionamiento offline completo requieren HTTPS.
+
+## Privacidad
+No hay conexión con bancos, no se solicitan claves, y esta versión no envía los datos a ningún servidor. Los datos permanecen en el almacenamiento local del navegador.

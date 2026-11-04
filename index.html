@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#172f38">
+<meta name="description" content="Control personal de ingresos, gastos, cuentas, tarjetas y ahorros.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Mi Control Financiero</title>
+<style>
+:root{--bg:#f4f7f8;--card:#fff;--ink:#172f38;--muted:#687b82;--line:#e3eaec;--green:#16845b;--red:#c34e55;--blue:#3977ad;--soft:#eaf1f3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px system-ui,-apple-system,Segoe UI,sans-serif}header{background:#172f38;color:white;padding:22px 18px 18px;border-radius:0 0 22px 22px}header .top{display:flex;justify-content:space-between;align-items:center}h1{font-size:20px;margin:0}header small{color:#b9cbd0}.balance{font-size:32px;font-weight:750;margin:8px 0 14px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary div{background:#29464e;padding:12px;border-radius:13px}.summary small{color:#c2d3d6}.summary b{display:block;font-size:19px;margin-top:4px}.wrap{padding:15px 14px 90px;max-width:680px;margin:auto}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.tab{border:0;border-radius:12px;padding:11px 4px;background:#e6edef;color:#35505a;font-weight:650;font-size:12px}.tab.active{background:#172f38;color:white}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px;margin:10px 0;box-shadow:0 2px 8px #1c394008}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted);font-size:13px}.amount{font-weight:750;font-variant-numeric:tabular-nums}.green{color:var(--green)}.red{color:var(--red)}button,.btn{border:0;border-radius:12px;background:var(--ink);color:white;padding:12px 14px;font-weight:650;font-size:14px;cursor:pointer}.btn.secondary,button.secondary{background:#eaf0f2;color:var(--ink)}button.danger{background:#fbecee;color:#a73b45}.full{width:100%}.field{margin:11px 0}.field label{display:block;font-size:13px;font-weight:650;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid #d8e2e5;border-radius:11px;padding:12px;font:inherit;background:white;color:var(--ink)}.field textarea{min-height:70px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.listitem{padding:12px 0;border-bottom:1px solid var(--line)}.listitem:last-child{border:0}.pill{font-size:11px;border-radius:20px;padding:4px 8px;background:#edf3f4;color:#4d626a}.empty{text-align:center;color:var(--muted);padding:25px 8px}.sectiontitle{font-size:16px;font-weight:750;margin:18px 2px 8px}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1}.hidden{display:none!important}.bar{height:9px;border-radius:10px;background:#e8eef0;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:#16845b}.footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:10px max(14px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px}.footer button{flex:1;max-width:220px}.notice{background:#fff7e5;border:1px solid #f0dfb5;border-radius:12px;padding:11px;color:#6c5525;font-size:12px;line-height:1.4}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div><h1>Mi Control Financiero</h1><small>Tu economía, bajo control</small></div><span>💰</span></div>
+ <small>BALANCE DISPONIBLE</small><div class="balance" id="balance">$ 0</div>
+ <div class="summary"><div><small>Ingresos del mes</small><b id="income">$ 0</b></div><div><small>Gastos del mes</small><b id="expenses">$ 0</b></div></div>
+</header>
+<main class="wrap">
+ <nav class="tabs">
+  <button class="tab active" data-tab="home">Inicio</button><button class="tab" data-tab="moves">Movimientos</button><button class="tab" data-tab="accounts">Cuentas</button><button class="tab" data-tab="more">Más</button>
+ </nav>
+ <section id="home" class="panel active">
+  <div class="actions"><button onclick="showForm('Gasto')">＋ Nuevo gasto</button><button class="secondary" onclick="showForm('Ingreso')">＋ Ingreso</button></div>
+  <div class="sectiontitle">Mis cuentas</div><div id="homeAccounts" class="card"></div>
+  <div class="sectiontitle">Últimos movimientos</div><div id="recent" class="card"></div>
+  <div class="sectiontitle">Deudas y tarjetas</div><div id="homeDebt" class="card"></div>
+ </section>
+ <section id="moves" class="panel">
+  <div class="row"><div class="sectiontitle">Movimientos</div><button onclick="showForm('Gasto')">＋ Agregar</button></div>
+  <div class="field"><select id="filterType" onchange="renderMoves()"><option value="">Todos los movimientos</option><option>Gasto</option><option>Ingreso</option><option>Transferencia</option></select></div>
+  <div class="card" id="allMoves"></div>
+ </section>
+ <section id="accounts" class="panel">
+  <div class="row"><div class="sectiontitle">Cuentas y efectivo</div><button onclick="adjustAccount()">Ajustar</button></div>
+  <div class="card" id="accountList"></div>
+  <div class="notice">Los saldos se actualizan manualmente al registrar ingresos, gastos y transferencias. Los movimientos entre cuentas propias no cuentan como ingresos ni gastos.</div>
+  <div class="sectiontitle">Transferir entre cuentas</div>
+  <div class="card">
+   <div class="field"><label>Desde</label><select id="transferFrom"></select></div>
+   <div class="field"><label>Hacia</label><select id="transferTo"></select></div>
+   <div class="field"><label>Importe (ARS)</label><input id="transferAmount" type="number" min="1" inputmode="decimal" placeholder="Ej. 10000"></div>
+   <button class="full" onclick="transfer()">Registrar transferencia</button>
+  </div>
+ </section>
+ <section id="more" class="panel">
+  <div class="sectiontitle">Tarjetas de crédito</div><div class="card" id="cards"></div>
+  <button class="full" onclick="addCard()">＋ Agregar tarjeta</button>
+  <div class="sectiontitle">Cuotas y deudas</div><div class="card" id="debts"></div>
+  <button class="full" onclick="addDebt()">＋ Registrar deuda o préstamo</button>
+  <div class="sectiontitle">Objetivos de ahorro</div><div class="card" id="goals"></div>
+  <button class="full" onclick="addGoal()">＋ Crear objetivo</button>
+  <div class="sectiontitle">Respaldo y datos</div>
+  <div class="card">
+   <p class="muted">Se guarda automáticamente en este dispositivo. También podés exportar una copia para conservarla fuera del celular o restaurarla.</p>
+   <div class="actions"><button onclick="exportBackup()">Exportar copia</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restaurar copia</button></div>
+   <input id="restoreFile" type="file" accept="application/json" class="hidden" onchange="restoreBackup(event)">
+   <p class="muted" id="backupDate"></p>
+  </div>
+  <div class="notice">Privacidad: esta versión no conecta con bancos ni envía tus datos a servidores. Si borrás los datos del navegador o perdés el teléfono, la copia exportada será necesaria para recuperar la información.</div>
+ </section>
+</main>
+<div class="footer"><button class="secondary" onclick="switchTab('home')">⌂ Inicio</button><button onclick="showForm('Gasto')">＋ Registrar</button></div>
+<script>
+const DEFAULT_ACCOUNTS=['Efectivo','Mercado Pago','Banco Nación','Naranja X','Personal Pay','Prex'];
+let db=JSON.parse(localStorage.getItem('mcf_db')||'null')||{accounts:DEFAULT_ACCOUNTS.map(name=>({name,balance:0})),moves:[],cards:[{name:'Banco Nación',limit:0,closing:'',due:''}],debts:[],goals:[]};
+function save(){localStorage.setItem('mcf_db',JSON.stringify(db));localStorage.setItem('mcf_backup',JSON.stringify({date:new Date().toISOString(),data:db}));render()}
+function money(n){return '$ '+Number(n||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function monthMoves(){let m=new Date().toISOString().slice(0,7);return db.moves.filter(x=>x.date?.slice(0,7)===m)}
+function total(){return db.accounts.reduce((s,a)=>s+Number(a.balance||0),0)}
+function render(){
+ document.getElementById('balance').textContent=money(total());
+ let mm=monthMoves();document.getElementById('income').textContent=money(mm.filter(x=>x.type==='Ingreso').reduce((s,x)=>s+x.amount,0));
+ document.getElementById('expenses').textContent=money(mm.filter(x=>x.type==='Gasto').reduce((s,x)=>s+x.amount,0));
+ let acct=db.accounts.map(a=>`<div class="listitem row"><span>${esc(a.name)}</span><b class="amount">${money(a.balance)}</b></div>`).join('');
+ document.getElementById('homeAccounts').innerHTML=acct||'<div class="empty">No hay cuentas.</div>';
+ document.getElementById('accountList').innerHTML=acct||'<div class="empty">No hay cuentas.</div>';
+ let recent=[...db.moves].reverse().slice(0,5);document.getElementById('recent').innerHTML=recent.length?recent.map(moveHTML).join(''):'<div class="empty">Todavía no registraste movimientos.</div>';
+ document.getElementById('homeDebt').innerHTML=`<div class="row"><span>Deuda en tarjetas</span><b>${money(db.cards.reduce((s,c)=>s+Number(c.debt||0),0))}</b></div><div class="row" style="margin-top:10px"><span>Otras deudas</span><b>${money(db.debts.reduce((s,d)=>s+Number(d.remaining||0),0))}</b></div>`;
+ document.getElementById('cards').innerHTML=db.cards.length?db.cards.map((c,i)=>`<div class="listitem"><div class="row"><b>${esc(c.name)}</b><b>${money(c.debt||0)}</b></div><div class="muted">Límite: ${money(c.limit)} · Cierre: ${esc(c.closing||'—')} · Vence: ${esc(c.due||'—')}</div><button class="secondary" style="margin-top:8px" onclick="cardPurchase(${i})">Registrar compra</button> <button class="secondary" onclick="payCard(${i})">Pagar</button></div>`).join(''):'<div class="empty">No hay tarjetas cargadas.</div>';
+ document.getElementById('debts').innerHTML=db.debts.length?db.debts.map((d,i)=>`<div class="listitem row"><div><b>${esc(d.name)}</b><div class="muted">Pendiente: ${money(d.remaining)}</div></div><button class="secondary" onclick="payDebt(${i})">Registrar pago</button></div>`).join(''):'<div class="empty">No hay deudas registradas.</div>';
+ document.getElementById('goals').innerHTML=db.goals.length?db.goals.map((g,i)=>`<div class="listitem"><div class="row"><b>${esc(g.name)}</b><b>${money(g.saved)} / ${money(g.target)}</b></div><div class="bar"><span style="width:${Math.min(100,100*g.saved/g.target)}%"></span></div><button class="secondary" style="margin-top:8px" onclick="contribute(${i})">Aportar ahorro</button></div>`).join(''):'<div class="empty">Todavía no hay objetivos.</div>';
+ let opts=db.accounts.map(a=>`<option>${esc(a.name)}</option>`).join('');document.getElementById('transferFrom').innerHTML=opts;document.getElementById('transferTo').innerHTML=opts;
+ document.getElementById('backupDate').textContent='Respaldo local automático actualizado: '+new Date().toLocaleString('es-AR');
+ renderMoves();
+}
+function moveHTML(x){return `<div class="listitem row"><div><b>${esc(x.description||x.category)}</b><div class="muted">${esc(x.category)} · ${esc(x.account)} · ${esc(x.date)}</div></div><b class="amount ${x.type==='Ingreso'?'green':x.type==='Gasto'?'red':''}">${x.type==='Ingreso'?'+':x.type==='Gasto'?'−':''} ${money(x.amount)}</b></div>`}
+function renderMoves(){let f=document.getElementById('filterType')?.value||'';let arr=[...db.moves].reverse().filter(x=>!f||x.type===f);document.getElementById('allMoves').innerHTML=arr.length?arr.map(moveHTML).join(''):'<div class="empty">No hay movimientos para mostrar.</div>'}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function switchTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));window.scrollTo(0,0)}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>switchTab(t.dataset.tab));
+function showForm(type){let category=prompt(type==='Gasto'?'Categoría del gasto (Alimentación, Transporte, etc.)':'Categoría del ingreso (Sueldo, trabajo extra, etc.)',type==='Gasto'?'Alimentación':'Sueldo');if(category===null)return;let amount=Number(prompt('Importe en pesos argentinos:','12500'));if(!amount||amount<=0)return;let description=prompt('Descripción:','');if(description===null)return;let account=prompt('Cuenta: '+db.accounts.map(a=>a.name).join(', '), 'Efectivo');if(!db.accounts.some(a=>a.name.toLowerCase()===account.toLowerCase())){alert('Esa cuenta no existe.');return}let a=db.accounts.find(a=>a.name.toLowerCase()===account.toLowerCase());if(type==='Gasto'&&a.balance<amount&&!confirm('El saldo registrado de esta cuenta no alcanza. ¿Registrar igualmente?'))return;a.balance+=type==='Ingreso'?amount:-amount;db.moves.push({type,category,amount,description,account:a.name,date:new Date().toISOString().slice(0,10)});save()}
+function adjustAccount(){let name=prompt('Nombre de la cuenta a ajustar:\n'+db.accounts.map(a=>a.name).join(', '));let a=db.accounts.find(x=>x.name===name);if(!a)return alert('Cuenta no encontrada.');let n=Number(prompt('Nuevo saldo real de '+name+':',a.balance));if(!Number.isFinite(n)||n<0)return;let diff=n-a.balance;a.balance=n;db.moves.push({type:'Ajuste',category:'Ajuste de saldo',amount:Math.abs(diff),description:'Ajuste manual de saldo',account:name,date:new Date().toISOString().slice(0,10)});save()}
+function transfer(){let from=document.getElementById('transferFrom').value,to=document.getElementById('transferTo').value,n=Number(document.getElementById('transferAmount').value);if(from===to||!n||n<=0)return alert('Elegí dos cuentas distintas y un importe válido.');let a=db.accounts.find(x=>x.name===from),b=db.accounts.find(x=>x.name===to);if(a.balance<n&&!confirm('El saldo de origen no alcanza. ¿Continuar?'))return;a.balance-=n;b.balance+=n;db.moves.push({type:'Transferencia',category:'Transferencia propia',amount:n,description:from+' → '+to,account:from+' / '+to,date:new Date().toISOString().slice(0,10)});save();alert('Transferencia registrada.')}
+function addCard(){let name=prompt('Nombre de la tarjeta:');if(!name)return;let limit=Number(prompt('Límite de compra (0 si no querés cargarlo):','0'))||0;let closing=prompt('Día de cierre (opcional):','')||'';let due=prompt('Día de vencimiento (opcional):','')||'';db.cards.push({name,limit,closing,due,debt:0});save()}
+function cardPurchase(i){let c=db.cards[i],n=Number(prompt('Importe de la compra con '+c.name+':'));if(!n||n<=0)return;let desc=prompt('Descripción de la compra:','Compra');if(desc===null)return;c.debt=Number(c.debt||0)+n;db.moves.push({type:'Gasto',category:'Compras con tarjeta',amount:n,description:desc+' ('+c.name+')',account:'Crédito: '+c.name,date:new Date().toISOString().slice(0,10)});save()}
+function payCard(i){let c=db.cards[i],n=Number(prompt('Importe que vas a pagar de '+c.name+':',c.debt));if(!n||n<=0||n>c.debt)return alert('Importe inválido.');let account=prompt('Cuenta desde donde pagás:\n'+db.accounts.map(a=>a.name).join(', '),'Banco Nación');let a=db.accounts.find(x=>x.name===account);if(!a)return alert('Cuenta no encontrada.');if(a.balance<n&&!confirm('El saldo registrado no alcanza. ¿Continuar?'))return;a.balance-=n;c.debt-=n;db.moves.push({type:'Pago de tarjeta',category:'Pago de deuda',amount:n,description:'Pago '+c.name,account:a.name,date:new Date().toISOString().slice(0,10)});save()}
+function addDebt(){let name=prompt('Nombre o concepto de la deuda:');if(!name)return;let n=Number(prompt('Importe pendiente:'));if(!n||n<=0)return;db.debts.push({name,remaining:n});save()}
+function payDebt(i){let d=db.debts[i],n=Number(prompt('Importe a pagar:',d.remaining));if(!n||n<=0||n>d.remaining)return;let account=prompt('Cuenta de pago:\n'+db.accounts.map(a=>a.name).join(', '),'Efectivo'),a=db.accounts.find(x=>x.name===account);if(!a)return alert('Cuenta no encontrada.');a.balance-=n;d.remaining-=n;db.moves.push({type:'Pago de deuda',category:'Deuda',amount:n,description:'Pago '+d.name,account:a.name,date:new Date().toISOString().slice(0,10)});save()}
+function addGoal(){let name=prompt('Nombre del objetivo:');if(!name)return;let target=Number(prompt('Monto objetivo:'));if(!target||target<=0)return;db.goals.push({name,target,saved:0});save()}
+function contribute(i){let g=db.goals[i],n=Number(prompt('Cuánto querés sumar a "'+g.name+'"?'));if(!n||n<=0)return;g.saved+=n;save()}
+function exportBackup(){let blob=new Blob([JSON.stringify({app:'Mi Control Financiero',version:1,exported:new Date().toISOString(),data:db},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='respaldo-mi-control-financiero.json';a.click();URL.revokeObjectURL(a.href)}
+function restoreBackup(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);let d=x.data||x;if(!d.accounts||!d.moves)throw Error();if(confirm('Esto reemplazará los datos actuales. ¿Continuar?')){db=d;save();alert('Respaldo restaurado.')}}catch(err){alert('El archivo no parece ser un respaldo válido.')}};r.readAsText(f);e.target.value=''}
+render();
+if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
