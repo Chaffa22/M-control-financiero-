@@ -87,8 +87,22 @@ document.getElementById('sources').innerHTML=db.sources.map((s,i)=>`<div class="
 document.getElementById('services').innerHTML=db.services.map((s,i)=>`<div class="item"><div class="row"><b>${esc(s.name)}</b><button class="secondary" onclick="payService(${i})">Registrar pago</button></div><div class="muted">${s.payments.filter(p=>p.date?.slice(0,7)===month()).map(p=>money(p.amount)+' · '+p.date).join(', ')||'Pendiente este mes'}</div></div>`).join('');
 document.getElementById('installments').innerHTML=db.installments.length?db.installments.map((x,i)=>`<div class="item"><div class="row"><b>${esc(x.name)}</b><b>${money(x.total-x.amount*x.paid)}</b></div><div class="muted">${esc(x.provider)} · ${x.paid}/${x.count} cuotas pagadas · cuota ${money(x.amount)}</div><button class="secondary" style="margin-top:7px" onclick="payInstallment(${i})" ${x.paid>=x.count?'disabled':''}>Registrar cuota pagada</button></div>`).join(''):'<div class="empty">No hay compras en cuotas registradas.</div>';
 let opts=db.accounts.map(a=>`<option>${esc(a.name)}</option>`).join('');document.getElementById('transferFrom').innerHTML=opts;document.getElementById('transferTo').innerHTML=opts;
+}function moveHTML(m){
+ return `<div class="item">
+ <div class="row">
+  <div>
+   <b>${esc(m.description||m.type)}</b>
+   <div class="muted">${esc(m.date)} · ${esc(m.type)} · ${esc(m.account||'')}</div>
+   ${m.category?`<div class="muted">${esc(m.kind||'')} · ${esc(m.category)} / ${esc(m.subcategory||'')}</div>`:''}
+  </div>
+  <b class="${m.type==='Ingreso'?'green':m.type==='Gasto'?'red':''}">${m.type==='Ingreso'?'+':m.type==='Gasto'?'−':''}${money(m.amount)}</b>
+ </div>
+ <div class="actions" style="margin-top:7px">
+  <button class="secondary" onclick="editMove('${m.id}')">Editar</button>
+  <button class="danger" onclick="deleteMove('${m.id}')">Eliminar</button>
+ </div>
+ </div>`;
 }
-function moveHTML(m){return `<div class="item row"><div><b>${esc(m.description||m.type)}</b><div class="muted">${esc(m.date)} · ${esc(m.type)} · ${esc(m.account||'')}</div>${m.category?`<div class="muted">${esc(m.kind||'')} · ${esc(m.category)} / ${esc(m.subcategory||'')}</div>`:''}</div><b class="${m.type==='Ingreso'?'green':m.type==='Gasto'?'red':''}">${m.type==='Ingreso'?'+':m.type==='Gasto'?'−':''}${money(m.amount)}</b></div>`}
-render();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+
 </script>
 </body></html>
