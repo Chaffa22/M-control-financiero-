@@ -1,13 +1,14 @@
+
 {
   "id": "./",
-  "name": "Mi Control Financiero",
-  "short_name": "Mi Dinero",
+  "name": "PlataOK",
+  "short_name": "PlataOK",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f7f8",
   "theme_color": "#172f38",
-  "description": "Control personal de ingresos, gastos, cuentas, tarjetas y ahorros.",
+  "description": "PlataOK: Tu plata, bajo control. Controlá tus ingresos, gastos, cuentas y ahorros.",
   "icons": [
     {
       "src": "./icon-192.svg",
