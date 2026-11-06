@@ -286,7 +286,11 @@ if(welcomeIndex===welcomeSteps.length-1&&n===1)return finishWelcome();
 welcomeIndex=Math.max(0,Math.min(welcomeSteps.length-1,welcomeIndex+n));drawWelcome()
 }
 function finishWelcome(){
-localStorage.setItem('plataok_welcome_v1','1');
+if(document.getElementById('dontShowWelcome').checked){
+localStorage.setItem('plataok_welcome_choice_v2','1');
+}else{
+localStorage.removeItem('plataok_welcome_choice_v2');
+}
 document.getElementById('welcomeOverlay').classList.add('hide')
 }
 
