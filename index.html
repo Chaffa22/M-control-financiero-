@@ -1,61 +1,78 @@
+
 <!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#172f38">
+<meta name="theme-color" content="#DDF5E8">
 <link rel="manifest" href="manifest.webmanifest">
 <title>PlataOK</title>
 <style>
-:root{--ink:#172f38;--muted:#687b82;--bg:#f3f6f7;--card:#fff;--line:#e1e8ea;--green:#16845b;--red:#bd4b55;--soft:#eaf1f3}
+:root{
+--ink:#174D3C;--muted:#668078;--bg:#F1F8F4;--card:#fff;
+--line:#DCEBE2;--green:#35A978;--mint:#DDF5E8;
+--red:#BD4B55;--soft:#EAF5EE
+}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px system-ui,sans-serif}
-header{background:var(--ink);color:white;padding:20px 17px;border-radius:0 0 22px 22px}
-h1{font-size:20px;margin:0}
-.muted,small{color:var(--muted)}
-header small{color:#c5d4d8}
+header{background:linear-gradient(135deg,#DDF5E8,#BCEBD1);color:var(--ink);padding:20px 17px;border-radius:0 0 24px 24px}
+h1{font-size:22px;margin:0}
+header small{color:#477663}
+.logo{display:flex;align-items:center;gap:10px}
+.logoMark{width:43px;height:43px;border-radius:13px;background:#174D3C;color:#DDF5E8;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;letter-spacing:-2px}
 .balance{font-size:30px;font-weight:800;margin:8px 0}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.summary div{background:#29464e;padding:11px;border-radius:12px}
+.summary div{background:#FFFFFFA8;padding:11px;border-radius:12px}
 .summary b{display:block;font-size:18px;margin-top:3px}
 .wrap{max-width:720px;margin:auto;padding:13px 13px 90px}
 .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:13px 0}
 .tab,button{border:0;border-radius:11px;padding:11px 9px;font-weight:650;background:var(--ink);color:white;font-size:13px}
-.tab{background:#e4ecee;color:var(--ink)}
+.tab{background:#E1EEE6;color:var(--ink)}
 .tab.active{background:var(--ink);color:white}
-.panel{display:none}
-.panel.active{display:block}
+.panel{display:none}.panel.active{display:block}
 .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0}
 .row{display:flex;justify-content:space-between;align-items:center;gap:9px}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .actions button{flex:1}
 .secondary{background:var(--soft);color:var(--ink)}
-.danger{background:#f9e9eb;color:#a63843}
+.danger{background:#F9E9EB;color:#A63843}
 .title{font-weight:800;margin:17px 2px 7px}
 .field{margin:10px 0}
 .field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
-.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid #d4dfe2;border-radius:10px;background:white;font:inherit;color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid #D4E3DA;border-radius:10px;background:white;font:inherit;color:var(--ink)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .full{width:100%}
 .item{padding:10px 0;border-bottom:1px solid var(--line)}
 .item:last-child{border:0}
-.green{color:var(--green)}
-.red{color:var(--red)}
+.green{color:var(--green)}.red{color:var(--red)}
 .empty{text-align:center;color:var(--muted);padding:18px 4px}
-.note{font-size:12px;line-height:1.45;background:#fff7e5;padding:11px;border-radius:10px;color:#6b5426}
-.footer{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:flex;gap:8px}
+.note{font-size:12px;line-height:1.45;background:#FFF7E5;padding:11px;border-radius:10px;color:#6B5426}
+.footer{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:3}
 .footer button{flex:1}
 .hide{display:none!important}
 .tag{font-size:11px;background:var(--soft);padding:3px 7px;border-radius:20px}
 .signature{text-align:center;color:var(--muted);font-size:12px;padding:20px 8px 8px;line-height:1.5}
+.overlay{position:fixed;inset:0;background:#123D30E8;z-index:20;display:flex;align-items:center;justify-content:center;padding:18px}
+.welcome{background:white;border-radius:23px;padding:22px;width:100%;max-width:430px;max-height:90vh;overflow:auto;text-align:center}
+.welcomeLogo{width:75px;height:75px;margin:0 auto 13px;border-radius:22px;background:var(--ink);color:var(--mint);display:flex;align-items:center;justify-content:center;font-size:29px;font-weight:900;letter-spacing:-3px}
+.welcome h2{margin:5px 0}.welcome p{color:var(--muted);line-height:1.5}
+.welcomeStep{min-height:135px;padding:12px 4px}
+.stepDots{display:flex;justify-content:center;gap:6px;margin:12px}
+.dot{width:8px;height:8px;border-radius:50%;background:#D6E5DC}
+.dot.on{background:var(--green)}
 </style>
 </head>
 <body>
 
 <header>
+<div class="logo">
+<div class="logoMark">RV</div>
+<div>
 <h1>PlataOK</h1>
 <small>Tu plata, bajo control</small>
-<div style="font-size:12px;color:#c5d4d8;margin-top:4px">Una app creada por Rafa Velazquez</div>
+<div style="font-size:11px;color:#477663">Una app creada por Rafa Velazquez</div>
+</div>
+</div>
 <div style="margin-top:15px">
 <small>SALDO DISPONIBLE EN CUENTAS</small>
 <div class="balance" id="balance">$ 0</div>
@@ -92,21 +109,12 @@ header small{color:#c5d4d8}
 <section id="movements" class="panel">
 <div class="title">Historial de movimientos</div>
 <div class="grid">
-<div class="field">
-<label>Mes</label>
-<input type="month" id="monthFilter" onchange="render()">
-</div>
-<div class="field">
-<label>Tipo</label>
+<div class="field"><label>Mes</label><input type="month" id="monthFilter" onchange="render()"></div>
+<div class="field"><label>Tipo</label>
 <select id="typeFilter" onchange="render()">
-<option value="">Todos</option>
-<option>Ingreso</option>
-<option>Gasto</option>
-<option>Transferencia</option>
-<option>Ahorro</option>
-<option>Pago de cuota</option>
-</select>
-</div>
+<option value="">Todos</option><option>Ingreso</option><option>Gasto</option>
+<option>Transferencia</option><option>Ahorro</option><option>Pago de cuota</option>
+</select></div>
 </div>
 <div class="card" id="movementList"></div>
 </section>
@@ -116,33 +124,14 @@ header small{color:#c5d4d8}
 <div class="card" id="savingsSummary"></div>
 <div class="title">Registrar aporte o retiro</div>
 <div class="card">
-<div class="field">
-<label>Movimiento</label>
-<select id="savingAction">
-<option value="aporte">Aporte</option>
-<option value="retiro">Retiro</option>
-<option value="rendimiento">Interés / rendimiento</option>
-</select>
-</div>
-<div class="field">
-<label>Cuenta de ahorro</label>
-<select id="savingAccount">
-<option>Prex</option>
-<option>Personal Pay</option>
-</select>
-</div>
-<div class="field">
-<label>Importe (ARS)</label>
-<input id="savingAmount" type="number" min="0.01" step="0.01" inputmode="decimal">
-</div>
-<div class="field">
-<label>Fecha</label>
-<input id="savingDate" type="date">
-</div>
+<div class="field"><label>Movimiento</label>
+<select id="savingAction"><option value="aporte">Aporte</option><option value="retiro">Retiro</option><option value="rendimiento">Interés / rendimiento</option></select></div>
+<div class="field"><label>Cuenta de ahorro</label><select id="savingAccount"><option>Prex</option><option>Personal Pay</option></select></div>
+<div class="field"><label>Importe (ARS)</label><input id="savingAmount" type="number" min="0.01" step="0.01" inputmode="decimal"></div>
+<div class="field"><label>Fecha</label><input id="savingDate" type="date"></div>
 <button class="full" onclick="saveSaving()">Registrar</button>
 </div>
-<div class="title">Historial de ahorros</div>
-<div class="card" id="savingHistory"></div>
+<div class="title">Historial de ahorros</div><div class="card" id="savingHistory"></div>
 </section>
 
 <section id="more" class="panel">
@@ -150,50 +139,34 @@ header small{color:#c5d4d8}
 <div class="card" id="sources"></div>
 <button class="full" onclick="addSource()">＋ Agregar fuente de ingreso</button>
 
+<div class="title">Mis tarjetas</div>
+<div class="card" id="cards"></div>
+<button class="full" onclick="addCard()">＋ Agregar tarjeta</button>
+
+<div class="title">Compras en cuotas</div>
+<div class="card" id="installments"></div>
+<button class="full" onclick="addInstallment()">＋ Registrar compra en cuotas</button>
+
 <div class="title">Servicios mensuales</div>
 <div class="card" id="services"></div>
 <button class="full" onclick="addService()">＋ Agregar servicio</button>
 
-<div class="title">Tarjetas y cuotas</div>
-<div class="card" id="installments"></div>
-<button class="full" onclick="addInstallment()">＋ Registrar compra en cuotas</button>
-
 <div class="title">Transferir entre cuentas</div>
 <div class="card">
-<div class="field">
-<label>Desde</label>
-<select id="transferFrom"></select>
-</div>
-<div class="field">
-<label>Hacia</label>
-<select id="transferTo"></select>
-</div>
-<div class="field">
-<label>Importe</label>
-<input id="transferAmount" type="number" min="0.01">
-</div>
+<div class="field"><label>Desde</label><select id="transferFrom"></select></div>
+<div class="field"><label>Hacia</label><select id="transferTo"></select></div>
+<div class="field"><label>Importe</label><input id="transferAmount" type="number" min="0.01"></div>
 <button class="full" onclick="transfer()">Transferir</button>
 </div>
 
 <div class="title">Respaldo</div>
 <div class="card">
 <p class="muted">Exportá una copia periódicamente para conservar tus datos. La información se guarda en este dispositivo.</p>
-<div class="actions">
-<button onclick="backup()">Exportar copia</button>
-<button class="secondary" onclick="document.getElementById('restore').click()">Importar copia</button>
-</div>
+<div class="actions"><button onclick="backup()">Exportar copia</button><button class="secondary" onclick="document.getElementById('restore').click()">Importar copia</button></div>
 <input id="restore" class="hide" type="file" accept="application/json" onchange="restore(event)">
 </div>
-
-<div class="note">
-La aplicación no se conecta a tus bancos ni procesa credenciales. Los saldos se actualizan manualmente. Las transferencias propias no se contabilizan como ingreso o gasto.
-</div>
-
-<div class="signature">
-<strong>PlataOK</strong><br>
-Una app creada por Rafa Velazquez<br>
-Tu plata, bajo control.
-</div>
+<div class="note">La aplicación no se conecta a tus bancos ni procesa credenciales. Los saldos se actualizan manualmente. Las transferencias propias no se contabilizan como ingreso o gasto.</div>
+<div class="signature"><strong>PlataOK</strong><br>Una app creada por Rafa Velazquez<br>Tu plata, bajo control.</div>
 </section>
 </main>
 
@@ -202,9 +175,23 @@ Tu plata, bajo control.
 <button onclick="openForm('expense')">＋ Registrar</button>
 </div>
 
+<div class="overlay hide" id="welcomeOverlay">
+<div class="welcome">
+<div class="welcomeLogo">RV</div>
+<h2>Bienvenido a PlataOK</h2>
+<div style="color:var(--green);font-weight:700">Tu plata, bajo control</div>
+<div class="welcomeStep" id="welcomeContent"></div>
+<div class="stepDots" id="welcomeDots"></div>
+<div class="actions">
+<button class="secondary" id="welcomeBack" onclick="welcomeMove(-1)">Anterior</button>
+<button id="welcomeNext" onclick="welcomeMove(1)">Siguiente</button>
+</div>
+<button class="secondary full" style="margin-top:9px" onclick="finishWelcome()">Saltar introducción</button>
+</div>
+</div>
+
 <script>
 const defaultAccounts=['Efectivo','Mercado Pago','Banco Nación','Naranja X','Personal Pay','Prex'];
-
 const categories={
 'Alimentación':['Supermercado','Carnicería','Verdulería','Panadería','Delivery'],
 'Transporte':['Nafta','Mantenimiento moto','Seguro','Transporte público'],
@@ -218,684 +205,324 @@ const categories={
 
 let db=JSON.parse(localStorage.getItem('mcf_v2')||'null')||{
 accounts:defaultAccounts.map(name=>({name,balance:0})),
-sources:[
-{name:'Trabajo 1',savePct:100},
-{name:'Trabajo 2',savePct:100},
-{name:'Trabajo 3',savePct:0}
-],
-moves:[],
-savings:[],
+sources:[{name:'Trabajo 1',savePct:100},{name:'Trabajo 2',savePct:100},{name:'Trabajo 3',savePct:0}],
+moves:[],savings:[],
 services:['Luz','Internet','Gas','Tasa de ABL'].map(name=>({name,payments:[]})),
 installments:[]
 };
+
+/* MIGRACIÓN SEGURA: no reemplaza ni borra los datos existentes */
+db.accounts=Array.isArray(db.accounts)?db.accounts:[];
+db.sources=Array.isArray(db.sources)?db.sources:[];
+db.moves=Array.isArray(db.moves)?db.moves:[];
+db.savings=Array.isArray(db.savings)?db.savings:[];
+db.services=Array.isArray(db.services)?db.services:[];
+db.installments=Array.isArray(db.installments)?db.installments:[];
+db.cards=Array.isArray(db.cards)?db.cards:[];
 
 const today=()=>new Date().toISOString().slice(0,10);
 const month=()=>today().slice(0,7);
 const money=n=>'$ '+Number(n||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-function save(){
-localStorage.setItem('mcf_v2',JSON.stringify(db));
-render();
-}
-
+function save(){localStorage.setItem('mcf_v2',JSON.stringify(db));render()}
 function tab(id){
 document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===id));
 document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));
-window.scrollTo(0,0);
+window.scrollTo(0,0)
 }
-
 document.querySelectorAll('.tab').forEach(x=>x.onclick=()=>tab(x.dataset.tab));
+function addMove(m){db.moves.push({...m,id:Date.now()+Math.random(),date:m.date||today()})}
+function account(name){return db.accounts.find(a=>a.name===name)}
+function cardByName(name){return db.cards.find(c=>c.name===name)}
 
-function addMove(m){
-db.moves.push({...m,id:Date.now()+Math.random(),date:m.date||today()});
+/* BIENVENIDA: se registra aparte, no modifica mcf_v2 */
+const welcomeSteps=[
+{title:'Tu dinero, organizado',text:'PlataOK te ayuda a registrar tus ingresos, gastos, ahorros y movimientos desde un solo lugar.'},
+{title:'Ingresos por trabajo',text:'Podés registrar distintas fuentes de ingreso y configurar qué porcentaje querés separar para ahorrar.'},
+{title:'Gastos y medios de pago',text:'Registrá tus gastos por categoría. Podés utilizar efectivo, transferencia o tus propias tarjetas de débito y crédito.'},
+{title:'Tus tarjetas y cuotas',text:'Agregá las tarjetas que utilizás. Las de crédito también te permiten llevar el control de compras financiadas y cuotas.'},
+{title:'Ahorros e historial',text:'Consultá cuánto tenés ahorrado, revisá tus movimientos y seguí tus ingresos y gastos mes a mes.'},
+{title:'Tus datos',text:'La información queda guardada en este dispositivo. Exportá copias de respaldo periódicamente para conservarla.'}
+];
+let welcomeIndex=0;
+function showWelcome(){
+if(localStorage.getItem('plataok_welcome_v1')==='1')return;
+welcomeIndex=0;drawWelcome();
+document.getElementById('welcomeOverlay').classList.remove('hide')
+}
+function drawWelcome(){
+let s=welcomeSteps[welcomeIndex];
+document.getElementById('welcomeContent').innerHTML='<h3>'+s.title+'</h3><p>'+s.text+'</p>';
+document.getElementById('welcomeDots').innerHTML=welcomeSteps.map((x,i)=>'<span class="dot '+(i===welcomeIndex?'on':'')+'"></span>').join('');
+document.getElementById('welcomeBack').style.visibility=welcomeIndex===0?'hidden':'visible';
+document.getElementById('welcomeNext').textContent=welcomeIndex===welcomeSteps.length-1?'Comenzar':'Siguiente';
+}
+function welcomeMove(n){
+if(welcomeIndex===welcomeSteps.length-1&&n===1)return finishWelcome();
+welcomeIndex=Math.max(0,Math.min(welcomeSteps.length-1,welcomeIndex+n));drawWelcome()
+}
+function finishWelcome(){
+localStorage.setItem('plataok_welcome_v1','1');
+document.getElementById('welcomeOverlay').classList.add('hide')
 }
 
-function account(name){
-return db.accounts.find(a=>a.name===name);
-}
-
+/* REGISTRO DE INGRESOS Y GASTOS */
 function openForm(type){
 let box=document.createElement('div');
 box.className='card';
-box.style.position='fixed';
-box.style.zIndex=5;
-box.style.inset='5% 4% auto';
-box.style.maxHeight='90vh';
-box.style.overflow='auto';
-box.style.boxShadow='0 5px 40px #0005';
-
+box.style.position='fixed';box.style.zIndex=5;box.style.inset='3% 4% auto';
+box.style.maxHeight='94vh';box.style.overflow='auto';box.style.boxShadow='0 5px 40px #0005';
+let paymentOptions='<option value="Efectivo">Efectivo</option><option value="Transferencia">Transferencia</option><option value="Débito sin tarjeta">Débito sin tarjeta</option>'+
+db.cards.map(c=>'<option value="card:'+esc(c.name)+'">'+esc(c.name)+' ('+esc(c.type)+')</option>').join('');
 box.innerHTML=`
-<div class="row">
-<b>${type==='income'?'Registrar ingreso':'Registrar gasto'}</b>
-<button class="danger" onclick="this.parentElement.parentElement.remove()">Cerrar</button>
-</div>
-
+<div class="row"><b>${type==='income'?'Registrar ingreso':'Registrar gasto'}</b><button class="danger" onclick="this.parentElement.parentElement.remove()">Cerrar</button></div>
 ${type==='income'?`
-<div class="field">
-<label>Fuente de ingreso</label>
-<select id="fSource">${db.sources.map(s=>`<option>${esc(s.name)}</option>`).join('')}</select>
-</div>
-`:`
-<div class="field">
-<label>Tipo</label>
-<select id="fKind"><option>Personal</option><option>Hogar</option></select>
-</div>
-<div class="field">
-<label>Categoría</label>
-<select id="fCategory">${Object.keys(categories).map(c=>`<option>${c}</option>`).join('')}</select>
-</div>
-<div class="field">
-<label>Subcategoría</label>
-<select id="fSub"></select>
-</div>
-<div class="field">
-<label>Medio de pago</label>
-<select id="fMethod">
-<option>Efectivo</option>
-<option>Débito</option>
-<option>Crédito BNA</option>
-<option>Crédito Coopeplus</option>
-<option>Mercado Crédito</option>
-<option>Transferencia</option>
-</select>
-</div>
+<div class="field"><label>Fuente de ingreso</label><select id="fSource">${db.sources.map(s=>'<option>'+esc(s.name)+'</option>').join('')}</select></div>
+`:`<div class="field"><label>Tipo</label><select id="fKind"><option>Personal</option><option>Hogar</option></select></div>
+<div class="field"><label>Categoría</label><select id="fCategory">${Object.keys(categories).map(c=>'<option>'+esc(c)+'</option>').join('')}</select></div>
+<div class="field"><label>Subcategoría</label><select id="fSub"></select></div>
+<div class="field"><label>Medio de pago</label><select id="fMethod">${paymentOptions}</select></div>
+<div class="field" id="fAccountWrap"><label>Cuenta de donde sale el dinero</label><select id="fAccount">${db.accounts.map(a=>'<option>'+esc(a.name)+'</option>').join('')}</select></div>
+<div class="note" id="fPaymentNote">Las compras con tarjeta de crédito se registran como compra financiada. Las tarjetas de débito descuentan el importe de la cuenta seleccionada.</div>
 `}
-
-<div class="field">
-<label>Importe (ARS)</label>
-<input id="fAmount" type="number" min="0.01" step="0.01" inputmode="decimal">
-</div>
-
-<div class="field">
-<label>Fecha</label>
-<input id="fDate" type="date" value="${today()}">
-</div>
-
-<div class="field">
-<label>${type==='income'?'Cuenta donde recibiste el dinero':'Cuenta / origen del pago'}</label>
-<select id="fAccount">${db.accounts.map(a=>`<option>${esc(a.name)}</option>`).join('')}</select>
-</div>
-
-<div class="field">
-<label>Descripción</label>
-<input id="fDesc" placeholder="Detalle opcional">
-</div>
-
-<button class="full" id="fSave">Guardar movimiento</button>
-`;
-
+<div class="field"><label>Importe (ARS)</label><input id="fAmount" type="number" min="0.01" step="0.01" inputmode="decimal"></div>
+<div class="field"><label>Fecha</label><input id="fDate" type="date" value="${today()}"></div>
+${type==='income'?`<div class="field"><label>Cuenta donde recibiste el dinero</label><select id="fAccount">${db.accounts.map(a=>'<option>'+esc(a.name)+'</option>').join('')}</select></div>`:''}
+<div class="field"><label>Descripción</label><input id="fDesc" placeholder="Detalle opcional"></div>
+<button class="full" id="fSave">Guardar movimiento</button>`;
 document.body.appendChild(box);
-
-const cat=box.querySelector('#fCategory');
-const sub=box.querySelector('#fSub');
-
-if(cat){
-function fill(){
-sub.innerHTML=(categories[cat.value]||[]).map(x=>`<option>${x}</option>`).join('');
-}
-cat.onchange=fill;
-fill();
-}
-
+const cat=box.querySelector('#fCategory'),sub=box.querySelector('#fSub');
+if(cat){function fill(){sub.innerHTML=(categories[cat.value]||[]).map(x=>'<option>'+esc(x)+'</option>').join('')}cat.onchange=fill;fill()}
+const method=box.querySelector('#fMethod');
+if(method)method.onchange=()=>{
+let v=method.value, c=v.startsWith('card:')?cardByName(v.slice(5)):null;
+box.querySelector('#fAccountWrap').classList.toggle('hide',!!c&&c.type==='Crédito');
+box.querySelector('#fPaymentNote').textContent=c&&c.type==='Crédito'?'Esta compra se agregará a tus compras en cuotas.':'El gasto se descontará de la cuenta seleccionada.';
+};
 box.querySelector('#fSave').onclick=()=>{
-let n=Number(box.querySelector('#fAmount').value);
-let a=box.querySelector('#fAccount').value;
-let date=box.querySelector('#fDate').value;
-
+let n=Number(box.querySelector('#fAmount').value),date=box.querySelector('#fDate').value;
 if(!n||n<=0||!date)return alert('Completá importe y fecha.');
-
 let desc=box.querySelector('#fDesc').value;
-
 if(type==='income'){
 let src=db.sources.find(s=>s.name===box.querySelector('#fSource').value);
-let pct=Math.max(0,Math.min(100,Number(src.savePct)||0));
-let saved=n*pct/100;
-let dest=src.saveAccount||'Prex';
-
+if(!src)return alert('Seleccioná una fuente de ingreso.');
+let pct=Math.max(0,Math.min(100,Number(src.savePct)||0)),saved=n*pct/100,dest=src.saveAccount||'Prex';
 if(saved>0){
-let acc=account(dest);
-if(!acc)return alert('No se encontró la cuenta de ahorro.');
-acc.balance+=saved;
-db.savings.push({type:'aporte',account:dest,amount:saved,date,source:src.name});
+let acc=account(dest);if(!acc)return alert('No se encontró la cuenta de ahorro.');
+acc.balance+=saved;db.savings.push({type:'aporte',account:dest,amount:saved,date,source:src.name});
 addMove({type:'Ahorro',amount:saved,description:'Ahorro desde '+src.name,account:dest,date});
 }
-
-let spend=n-saved;
-if(spend>0)account(a).balance+=spend;
-
-addMove({
-type:'Ingreso',
-amount:n,
-description:desc||src.name,
-account:a,
-source:src.name,
-saved,
-pct,
-date
-});
-
+let spend=n-saved,a=box.querySelector('#fAccount').value;
+if(spend>0){let acc=account(a);if(!acc)return alert('No se encontró la cuenta.');acc.balance+=spend}
+addMove({type:'Ingreso',amount:n,description:desc||src.name,account:a,source:src.name,saved,pct,date});
 }else{
-let method=box.querySelector('#fMethod').value;
-let kind=box.querySelector('#fKind').value;
-let categoryValue=box.querySelector('#fCategory').value;
-let subcat=sub.value;
-
-if(method.startsWith('Crédito')||method==='Mercado Crédito'){
-let inst={
-name:desc||subcat,
-provider:method,
-total:n,
-paid:0,
-count:1,
-amount:n,
-nextDate:date
-};
-db.installments.push(inst);
-
-addMove({
-type:'Gasto',
-amount:n,
-description:desc||subcat,
-category:categoryValue,
-subcategory:subcat,
-kind,
-method,
-account:method,
-date
-});
-
+let methodValue=method.value,kind=box.querySelector('#fKind').value,catValue=cat.value,subcat=sub.value;
+let c=methodValue.startsWith('card:')?cardByName(methodValue.slice(5)):null;
+if(c&&c.type==='Crédito'){
+db.installments.push({name:desc||subcat,provider:c.name,total:n,paid:0,count:1,amount:n,nextDate:date});
+addMove({type:'Gasto',amount:n,description:desc||subcat,category:catValue,subcategory:subcat,kind,method:c.name,account:c.name,date});
 }else{
-let acc=account(a);
+let a=box.querySelector('#fAccount').value,acc=account(a);
 if(!acc)return alert('No se encontró la cuenta.');
-
 acc.balance-=n;
-
-addMove({
-type:'Gasto',
-amount:n,
-description:desc||subcat,
-category:categoryValue,
-subcategory:subcat,
-kind,
-method,
-account:a,
-date
-});
+addMove({type:'Gasto',amount:n,description:desc||subcat,category:catValue,subcategory:subcat,kind,method:c?c.name:methodValue,account:a,date});
+}
+}
+box.remove();save();
 }
 }
 
-box.remove();
-save();
-};
-}
-
-function addSource(){
-let name=prompt('Nombre del trabajo o fuente:');
+/* TARJETAS PERSONALIZABLES */
+function addCard(){
+let name=prompt('Nombre de la tarjeta (por ejemplo: Visa Galicia):');
 if(!name)return;
+if(db.cards.some(c=>c.name.toLowerCase()===name.trim().toLowerCase()))return alert('Ya existe una tarjeta con ese nombre.');
+let type=prompt('Tipo de tarjeta: escribí Crédito o Débito','Crédito');
+if(!type)return;
+type=type.trim().toLowerCase();
+if(type!=='crédito'&&type!=='credito'&&type!=='débito'&&type!=='debito')return alert('Tipo inválido. Escribí Crédito o Débito.');
+type=type.startsWith('cr')?'Crédito':'Débito';
+db.cards.push({name:name.trim(),type});
+save();
+}
+function editCard(i){
+let c=db.cards[i];if(!c)return;
+let name=prompt('Nombre de la tarjeta:',c.name);if(!name)return;
+let type=prompt('Tipo: Crédito o Débito',c.type);if(!type)return;
+type=type.trim().toLowerCase();
+if(!['crédito','credito','débito','debito'].includes(type))return alert('Tipo inválido.');
+let newName=name.trim();
+if(db.cards.some((x,j)=>j!==i&&x.name.toLowerCase()===newName.toLowerCase()))return alert('Ya existe una tarjeta con ese nombre.');
+/* Los movimientos anteriores conservan el nombre que tenían */
+c.name=newName;c.type=type.startsWith('cr')?'Crédito':'Débito';save();
+}
+function deleteCard(i){
+let c=db.cards[i];if(!c)return;
+if(!confirm('¿Eliminar "'+c.name+'" de tus tarjetas? Los movimientos anteriores conservarán el nombre registrado.'))return;
+db.cards.splice(i,1);save();
+}
 
+/* INGRESOS POR TRABAJO */
+function addSource(){
+let name=prompt('Nombre del trabajo o fuente:');if(!name)return;
 let pct=Number(prompt('Porcentaje que querés separar como ahorro (0 a 100):','0'));
 if(!Number.isFinite(pct)||pct<0||pct>100)return alert('Porcentaje inválido.');
-
 let saveAccount=prompt('Cuenta donde guardar el ahorro: Prex o Personal Pay','Prex');
 if(!['Prex','Personal Pay'].includes(saveAccount))saveAccount='Prex';
-
-db.sources.push({name,savePct:pct,saveAccount});
-save();
+db.sources.push({name,savePct:pct,saveAccount});save();
 }
-
 function editSource(i){
-let s=db.sources[i];
-let n=prompt('Nombre de la fuente:',s.name);
-if(!n)return;
-
+let s=db.sources[i],n=prompt('Nombre de la fuente:',s.name);if(!n)return;
 s.name=n;
-
-let p=Number(prompt('Porcentaje de ahorro (0 a 100):',s.savePct));
-if(p>=0&&p<=100)s.savePct=p;
-
-let a=prompt('Cuenta de ahorro (Prex o Personal Pay):',s.saveAccount||'Prex');
-if(['Prex','Personal Pay'].includes(a))s.saveAccount=a;
-
+let p=Number(prompt('Porcentaje de ahorro (0 a 100):',s.savePct));if(p>=0&&p<=100)s.savePct=p;
+let a=prompt('Cuenta de ahorro (Prex o Personal Pay):',s.saveAccount||'Prex');if(['Prex','Personal Pay'].includes(a))s.saveAccount=a;
 save();
 }
 
+/* AHORROS */
 function saveSaving(){
-let type=document.getElementById('savingAction').value;
-let a=document.getElementById('savingAccount').value;
-let n=Number(document.getElementById('savingAmount').value);
-let date=document.getElementById('savingDate').value||today();
-
+let type=document.getElementById('savingAction').value,a=document.getElementById('savingAccount').value;
+let n=Number(document.getElementById('savingAmount').value),date=document.getElementById('savingDate').value||today();
 if(!n||n<=0)return alert('Ingresá un importe válido.');
-
-if(type==='retiro')account(a).balance-=n;
-else account(a).balance+=n;
-
+let acc=account(a);if(!acc)return alert('No se encontró la cuenta.');
+if(type==='retiro')acc.balance-=n;else acc.balance+=n;
 db.savings.push({type,account:a,amount:n,date});
-
-addMove({
-type:'Ahorro',
-amount:n,
-description:(type==='aporte'?'Aporte':type==='retiro'?'Retiro':'Rendimiento')+' de ahorro',
-account:a,
-date
-});
-
-save();
-document.getElementById('savingAmount').value='';
+addMove({type:'Ahorro',amount:n,description:(type==='aporte'?'Aporte':type==='retiro'?'Retiro':'Rendimiento')+' de ahorro',account:a,date});
+save();document.getElementById('savingAmount').value='';
 }
 
-function addService(){
-let name=prompt('Nombre del servicio:');
-if(!name)return;
-db.services.push({name,payments:[]});
-save();
-}
-
+/* SERVICIOS */
+function addService(){let name=prompt('Nombre del servicio:');if(!name)return;db.services.push({name,payments:[]});save()}
 function payService(i){
-let s=db.services[i];
-let n=Number(prompt('Importe pagado de '+s.name+':'));
-if(!n||n<=0)return;
-
-let date=prompt('Fecha de pago (AAAA-MM-DD):',today());
-let a=prompt('Cuenta desde la que pagaste:', 'Banco Nación');
-
+let s=db.services[i],n=Number(prompt('Importe pagado de '+s.name+':'));if(!n||n<=0)return;
+let date=prompt('Fecha de pago (AAAA-MM-DD):',today()),a=prompt('Cuenta desde la que pagaste:','Banco Nación');
 if(!account(a))return alert('Cuenta no encontrada.');
-
-account(a).balance-=n;
-s.payments.push({amount:n,date,account:a});
-
-addMove({
-type:'Gasto',
-amount:n,
-description:s.name,
-category:'Hogar y servicios',
-subcategory:s.name,
-kind:'Hogar',
-account:a,
-date
-});
-
-save();
+account(a).balance-=n;s.payments.push({amount:n,date,account:a});
+addMove({type:'Gasto',amount:n,description:s.name,category:'Hogar y servicios',subcategory:s.name,kind:'Hogar',account:a,date});save();
 }
 
+/* COMPRAS EN CUOTAS */
 function addInstallment(){
-let name=prompt('Descripción de la compra:');
-if(!name)return;
-
+let creditCards=db.cards.filter(c=>c.type==='Crédito');
+if(!creditCards.length)return alert('Primero agregá una tarjeta de crédito en la sección Mis tarjetas.');
+let name=prompt('Descripción de la compra:');if(!name)return;
 let total=Number(prompt('Importe total de la compra:'));
 let count=Number(prompt('Cantidad de cuotas:','3'));
-
-if(!total||total<=0||!count||count<1)return;
-
-let provider=prompt('Medio: Crédito BNA, Crédito Coopeplus o Mercado Crédito','Crédito BNA');
+if(!total||total<=0||!count||count<1||!Number.isInteger(count))return alert('Importe o cantidad de cuotas inválidos.');
+let provider=prompt('Escribí el nombre de tu tarjeta de crédito:\n'+creditCards.map(c=>c.name).join('\n'),creditCards[0].name);
+if(!provider||!creditCards.some(c=>c.name===provider))return alert('Seleccioná una tarjeta de crédito de tu lista.');
 let first=prompt('Fecha de primera cuota (AAAA-MM-DD):',today());
-
-db.installments.push({
-name,
-total,
-count,
-paid:0,
-amount:total/count,
-provider,
-nextDate:first
-});
-
-addMove({
-type:'Gasto',
-amount:total,
-description:name,
-category:'Compra financiada',
-method:provider,
-account:provider,
-date:today()
-});
-
-save();
+db.installments.push({name,total,count,paid:0,amount:total/count,provider,nextDate:first});
+addMove({type:'Gasto',amount:total,description:name,category:'Compra financiada',method:provider,account:provider,date:today()});save();
 }
-
 function payInstallment(i){
-let x=db.installments[i];
-if(x.paid>=x.count)return alert('Compra cancelada.');
-
-let a=prompt('Cuenta desde donde pagás la cuota:', 'Banco Nación');
+let x=db.installments[i];if(x.paid>=x.count)return alert('Compra cancelada.');
+let a=prompt('Cuenta desde donde pagás la cuota:','Banco Nación');
 if(!account(a))return alert('Cuenta no encontrada.');
-
-account(a).balance-=x.amount;
-x.paid++;
-
-addMove({
-type:'Pago de cuota',
-amount:x.amount,
-description:x.name+' ('+x.paid+'/'+x.count+')',
-account:a,
-date:today()
-});
-
-save();
+account(a).balance-=x.amount;x.paid++;
+addMove({type:'Pago de cuota',amount:x.amount,description:x.name+' ('+x.paid+'/'+x.count+')',account:a,date:today()});save();
 }
 
+/* TRANSFERENCIAS */
 function transfer(){
-let f=document.getElementById('transferFrom').value;
-let t=document.getElementById('transferTo').value;
-let n=Number(document.getElementById('transferAmount').value);
-
+let f=document.getElementById('transferFrom').value,t=document.getElementById('transferTo').value,n=Number(document.getElementById('transferAmount').value);
 if(f===t||!n||n<=0)return alert('Elegí dos cuentas distintas e importe válido.');
-
-account(f).balance-=n;
-account(t).balance+=n;
-
-addMove({
-type:'Transferencia',
-amount:n,
-description:f+' → '+t,
-account:f+' / '+t,
-date:today()
-});
-
-save();
+account(f).balance-=n;account(t).balance+=n;
+addMove({type:'Transferencia',amount:n,description:f+' → '+t,account:f+' / '+t,date:today()});save();
 }
 
-/* EDICIÓN Y ELIMINACIÓN SEGURA DE MOVIMIENTOS */
-
+/* EDICIÓN Y ELIMINACIÓN DE MOVIMIENTOS */
 function movementDelta(m){
 if(m.type==='Ingreso')return Number(m.amount)-Number(m.saved||0);
 if(m.type==='Gasto')return -Number(m.amount);
 return null;
 }
-
 function canEditMove(m){
 if(!m)return false;
-
-if(m.type==='Ingreso'){
-return Number(m.saved||0)===0&&!!account(m.account);
-}
-
+if(m.type==='Ingreso')return Number(m.saved||0)===0&&!!account(m.account);
 if(m.type==='Gasto'){
-let credit=(m.method||'').includes('Crédito')||
-(m.method||'').includes('Mercado Crédito');
-
-let service=m.category==='Hogar y servicios';
-
-return !credit&&!service&&!!account(m.account);
+let credit=(m.method||'').includes('Crédito')||(m.method||'').includes('Mercado Crédito');
+return !credit&&m.category!=='Hogar y servicios'&&!!account(m.account);
 }
-
 return false;
 }
-
 function editMove(id){
-let m=db.moves.find(x=>String(x.id)===String(id));
-
-if(!m)return alert('No se encontró el movimiento.');
-
-if(!canEditMove(m)){
-return alert('Este movimiento está protegido y no se puede editar desde aquí.');
+let m=db.moves.find(x=>String(x.id)===String(id));if(!m)return alert('No se encontró el movimiento.');
+if(!canEditMove(m))return alert('Este movimiento está protegido y no se puede editar desde aquí.');
+let description=prompt('Descripción:',m.description||'');if(description===null)return;
+let amount=Number(prompt('Importe:',m.amount));if(!Number.isFinite(amount)||amount<=0)return alert('Importe inválido.');
+let date=prompt('Fecha (AAAA-MM-DD):',m.date);if(date===null)return;
+if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return alert('Fecha inválida.');
+let delta=movementDelta(m),acc=account(m.account);if(!acc)return alert('No se encontró la cuenta.');
+acc.balance-=delta;m.description=description;m.amount=amount;m.date=date;acc.balance+=movementDelta(m);save();
 }
-
-let description=prompt('Descripción:',m.description||'');
-if(description===null)return;
-
-let amount=Number(prompt('Importe:',m.amount));
-if(!Number.isFinite(amount)||amount<=0){
-return alert('Importe inválido.');
-}
-
-let date=prompt('Fecha (AAAA-MM-DD):',m.date);
-if(date===null)return;
-
-if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){
-return alert('Fecha inválida.');
-}
-
-let delta=movementDelta(m);
-let acc=account(m.account);
-
-if(!acc)return alert('No se encontró la cuenta.');
-
-acc.balance-=delta;
-
-m.description=description;
-m.amount=amount;
-m.date=date;
-
-acc.balance+=movementDelta(m);
-
-save();
-}
-
 function deleteMove(id){
-let m=db.moves.find(x=>String(x.id)===String(id));
-
-if(!m)return alert('No se encontró el movimiento.');
-
-if(!canEditMove(m)){
-return alert('Este movimiento está protegido y no se puede eliminar desde aquí.');
+let m=db.moves.find(x=>String(x.id)===String(id));if(!m)return alert('No se encontró el movimiento.');
+if(!canEditMove(m))return alert('Este movimiento está protegido y no se puede eliminar desde aquí.');
+if(!confirm('¿Seguro que querés eliminar este movimiento? Se corregirá también el saldo de la cuenta.'))return;
+let acc=account(m.account);if(!acc)return alert('No se encontró la cuenta.');
+acc.balance-=movementDelta(m);db.moves=db.moves.filter(x=>String(x.id)!==String(id));save();
 }
-
-if(!confirm('¿Seguro que querés eliminar este movimiento? Se corregirá también el saldo de la cuenta.')){
-return;
-}
-
-let acc=account(m.account);
-
-if(!acc)return alert('No se encontró la cuenta.');
-
-acc.balance-=movementDelta(m);
-
-db.moves=db.moves.filter(x=>String(x.id)!==String(id));
-
-save();
-}
-
 function moveHTML(m){
-return `
-<div class="item">
-<div class="row">
-<div>
-<b>${esc(m.description||m.type)}</b>
+return `<div class="item">
+<div class="row"><div><b>${esc(m.description||m.type)}</b>
 <div class="muted">${esc(m.date)} · ${esc(m.type)} · ${esc(m.account||'')}</div>
-${m.category?`<div class="muted">${esc(m.kind||'')} · ${esc(m.category)} / ${esc(m.subcategory||'')}</div>`:''}
-</div>
-
-<b class="${m.type==='Ingreso'?'green':m.type==='Gasto'?'red':''}">
-${m.type==='Ingreso'?'+':m.type==='Gasto'?'−':''}${money(m.amount)}
-</b>
-</div>
-
-${canEditMove(m)?`
-<div class="actions" style="margin-top:7px">
-<button class="secondary" onclick="editMove('${m.id}')">Editar</button>
-<button class="danger" onclick="deleteMove('${m.id}')">Eliminar</button>
-</div>
-`:`<div class="muted" style="font-size:11px;margin-top:6px">Movimiento protegido</div>`}
-</div>
-`;
+${m.category?'<div class="muted">'+esc(m.kind||'')+' · '+esc(m.category)+' / '+esc(m.subcategory||'')+'</div>':''}</div>
+<b class="${m.type==='Ingreso'?'green':m.type==='Gasto'?'red':''}">${m.type==='Ingreso'?'+':m.type==='Gasto'?'−':''}${money(m.amount)}</b></div>
+${canEditMove(m)?'<div class="actions" style="margin-top:7px"><button class="secondary" onclick="editMove(\''+m.id+'\')">Editar</button><button class="danger" onclick="deleteMove(\''+m.id+'\')">Eliminar</button></div>':'<div class="muted" style="font-size:11px;margin-top:6px">Movimiento protegido</div>'}
+</div>`;
 }
 
-/* RESPALDO */
-
+/* RESPALDO Y RESTAURACIÓN */
 function backup(){
-let blob=new Blob([
-JSON.stringify({app:'PlataOK',version:2,data:db},null,2)
-],{type:'application/json'});
-
-let a=document.createElement('a');
-a.href=URL.createObjectURL(blob);
-a.download='plataok-respaldo.json';
-a.click();
-URL.revokeObjectURL(a.href);
+let blob=new Blob([JSON.stringify({app:'PlataOK',version:3,data:db},null,2)],{type:'application/json'});
+let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='plataok-respaldo.json';a.click();URL.revokeObjectURL(a.href);
 }
-
 function restore(e){
-let f=e.target.files[0];
-if(!f)return;
-
+let f=e.target.files[0];if(!f)return;
 let r=new FileReader();
-
 r.onload=()=>{
 try{
-let x=JSON.parse(r.result);
-let d=x.data||x;
-
+let x=JSON.parse(r.result),d=x.data||x;
 if(!d.accounts||!d.moves)throw 0;
-
 if(confirm('Esto reemplazará los datos actuales. ¿Continuar?')){
 db=d;
-save();
-alert('Copia restaurada.');
+db.cards=Array.isArray(db.cards)?db.cards:[];
+db.installments=Array.isArray(db.installments)?db.installments:[];
+save();alert('Copia restaurada.');
 }
-}catch(_){
-alert('Archivo no válido.');
-}
+}catch(_){alert('Archivo no válido.')}
 };
-
 r.readAsText(f);
 }
 
 /* ACTUALIZACIÓN DE PANTALLAS */
-
 function render(){
 let mm=db.moves.filter(m=>m.date?.slice(0,7)===month());
-
 let sum=t=>mm.filter(m=>m.type===t).reduce((s,m)=>s+m.amount,0);
-
-document.getElementById('balance').textContent=
-money(db.accounts.reduce((s,a)=>s+a.balance,0));
-
+document.getElementById('balance').textContent=money(db.accounts.reduce((s,a)=>s+a.balance,0));
 document.getElementById('income').textContent=money(sum('Ingreso'));
 document.getElementById('expenses').textContent=money(sum('Gasto'));
-
-document.getElementById('accountSummary').innerHTML=
-db.accounts.map(a=>`
-<div class="item row">
-<span>${esc(a.name)}</span>
-<b>${money(a.balance)}</b>
-</div>
-`).join('');
-
-document.getElementById('monthSummary').innerHTML=`
-<div class="row">
-<span>Ingresos registrados</span>
-<b class="green">${money(sum('Ingreso'))}</b>
-</div>
-<div class="row">
-<span>Gastos registrados</span>
-<b class="red">${money(sum('Gasto'))}</b>
-</div>
-<div class="row">
-<span>Ahorro separado</span>
-<b>${money(db.savings.filter(s=>s.date?.slice(0,7)===month()&&s.type!=='retiro').reduce((s,x)=>s+x.amount,0))}</b>
-</div>
-`;
-
-document.getElementById('recent').innerHTML=
-db.moves.length
-?[...db.moves].reverse().slice(0,5).map(moveHTML).join('')
-:'<div class="empty">Todavía no hay movimientos.</div>';
-
-document.getElementById('serviceSummary').innerHTML=
-db.services.map(s=>{
-let p=s.payments.find(x=>x.date?.slice(0,7)===month());
-return `
-<div class="item row">
-<span>${esc(s.name)}</span>
-<span class="tag">${p?'Pagado':'Pendiente'}</span>
-</div>
-`;
-}).join('');
-
-let mf=document.getElementById('monthFilter');
-let tf=document.getElementById('typeFilter');
-
-if(mf&&!mf.value)mf.value=month();
-
-let filtered=db.moves.filter(m=>
-(!mf.value||m.date?.slice(0,7)===mf.value)&&
-(!tf.value||m.type===tf.value)
-);
-
-document.getElementById('movementList').innerHTML=
-filtered.length
-?[...filtered].reverse().map(moveHTML).join('')
-:'<div class="empty">No hay movimientos para ese filtro.</div>';
-
-document.getElementById('savingsSummary').innerHTML=
-['Prex','Personal Pay'].map(a=>`
-<div class="item row">
-<span>${a}</span>
-<b>${money(account(a)?.balance||0)}</b>
-</div>
-`).join('')+
-`
-<div class="item row">
-<b>Total en ambas cuentas</b>
-<b>${money(['Prex','Personal Pay'].reduce((s,a)=>s+(account(a)?.balance||0),0))}</b>
-</div>
-`;
-
-document.getElementById('savingHistory').innerHTML=
-db.savings.length
-?[...db.savings].reverse().map(s=>`
-<div class="item row">
-<span>${esc(s.date)} · ${esc(s.type)} · ${esc(s.account)}</span>
-<b>${money(s.amount)}</b>
-</div>
-`).join('')
-:'<div class="empty">Todavía no hay aportes ni retiros.</div>';
-
-document.getElementById('sources').innerHTML=
-db.sources.map((s,i)=>`
-<div class="item row">
-<div>
-<b>${esc(s.name)}</b>
-<div class="muted">Ahorro automático: ${s.savePct}% · ${esc(s.saveAccount||'Prex')}</div>
-</div>
-<button class="secondary" onclick="editSource(${i})">Editar</button>
-</div>
-`).join('');
-
-document.getElementById('services').innerHTML=
-db.services.map((s,i)=>`
-<div class="item">
-<div class="row">
-<b>${esc(s.name)}</b>
-<button class="secondary" onclick="payService(${i})">Registrar pago</button>
-</div>
-<div class="muted">
-${s.payments.filter(p=>p.date?.slice(0,7)===month()).map(p=>money(p.amount)+' · '+p.date).join(', ')||'Pendiente este mes'}
-</div>
-</div>
-`).join('');
-
-document.getElementById('installments').innerHTML=
-db.installments.length
-?db.installments.map((x,i)=>`
-<div class="item">
-<div class="row">
-<b>${esc(x.name)}</b>
-<b>${money(x.total-x.amount*x.paid)}</b>
-</div>
-<div class="muted">
-${esc(x.provider)} · ${x.paid}/${x.count} cuotas pagadas · cuota ${money(x.amount)}
-</div>
-<button class="secondary" style="margin-top:7px" onclick="payInstallment(${i})" ${x.paid>=x.count?'disabled':''}>
-Registrar cuota pagada
-</button>
-</div>
-`).join('')
-:'<div class="empty">No hay compras en cuotas registradas.</div>';
-
-let opts=db.accounts.map(a=>`<option>${esc(a.name)}</option>`).join('');
-
-document.getElementById('transferFrom').innerHTML=opts;
-document.getElementById('transferTo').innerHTML=opts;
+document.getElementById('accountSummary').innerHTML=db.accounts.map(a=>'<div class="item row"><span>'+esc(a.name)+'</span><b>'+money(a.balance)+'</b></div>').join('');
+document.getElementById('monthSummary').innerHTML='<div class="row"><span>Ingresos registrados</span><b class="green">'+money(sum('Ingreso'))+'</b></div><div class="row"><span>Gastos registrados</span><b class="red">'+money(sum('Gasto'))+'</b></div><div class="row"><span>Ahorro separado</span><b>'+money(db.savings.filter(s=>s.date?.slice(0,7)===month()&&s.type!=='retiro').reduce((s,x)=>s+x.amount,0))+'</b></div>';
+document.getElementById('recent').innerHTML=db.moves.length?[...db.moves].reverse().slice(0,5).map(moveHTML).join(''):'<div class="empty">Todavía no hay movimientos.</div>';
+document.getElementById('serviceSummary').innerHTML=db.services.map(s=>{let p=s.payments.find(x=>x.date?.slice(0,7)===month());return '<div class="item row"><span>'+esc(s.name)+'</span><span class="tag">'+(p?'Pagado':'Pendiente')+'</span></div>'}).join('');
+let mf=document.getElementById('monthFilter'),tf=document.getElementById('typeFilter');if(mf&&!mf.value)mf.value=month();
+let filtered=db.moves.filter(m=>(!mf.value||m.date?.slice(0,7)===mf.value)&&(!tf.value||m.type===tf.value));
+document.getElementById('movementList').innerHTML=filtered.length?[...filtered].reverse().map(moveHTML).join(''):'<div class="empty">No hay movimientos para ese filtro.</div>';
+document.getElementById('savingsSummary').innerHTML=['Prex','Personal Pay'].map(a=>'<div class="item row"><span>'+a+'</span><b>'+money(account(a)?.balance||0)+'</b></div>').join('')+'<div class="item row"><b>Total en ambas cuentas</b><b>'+money(['Prex','Personal Pay'].reduce((s,a)=>s+(account(a)?.balance||0),0))+'</b></div>';
+document.getElementById('savingHistory').innerHTML=db.savings.length?[...db.savings].reverse().map(s=>'<div class="item row"><span>'+esc(s.date)+' · '+esc(s.type)+' · '+esc(s.account)+'</span><b>'+money(s.amount)+'</b></div>').join(''):'<div class="empty">Todavía no hay aportes ni retiros.</div>';
+document.getElementById('sources').innerHTML=db.sources.map((s,i)=>'<div class="item row"><div><b>'+esc(s.name)+'</b><div class="muted">Ahorro automático: '+s.savePct+'% · '+esc(s.saveAccount||'Prex')+'</div></div><button class="secondary" onclick="editSource('+i+')">Editar</button></div>').join('');
+document.getElementById('cards').innerHTML=db.cards.length?db.cards.map((c,i)=>'<div class="item"><div class="row"><div><b>'+esc(c.name)+'</b><div class="muted">'+esc(c.type)+'</div></div><span class="tag">'+esc(c.type)+'</span></div><div class="actions" style="margin-top:7px"><button class="secondary" onclick="editCard('+i+')">Editar</button><button class="danger" onclick="deleteCard('+i+')">Eliminar</button></div></div>').join(''):'<div class="empty">Todavía no agregaste tarjetas. Podés cargar tarjetas de crédito y débito.</div>';
+document.getElementById('services').innerHTML=db.services.map((s,i)=>'<div class="item"><div class="row"><b>'+esc(s.name)+'</b><button class="secondary" onclick="payService('+i+')">Registrar pago</button></div><div class="muted">'+(s.payments.filter(p=>p.date?.slice(0,7)===month()).map(p=>money(p.amount)+' · '+p.date).join(', ')||'Pendiente este mes')+'</div></div>').join('');
+document.getElementById('installments').innerHTML=db.installments.length?db.installments.map((x,i)=>'<div class="item"><div class="row"><b>'+esc(x.name)+'</b><b>'+money(x.total-x.amount*x.paid)+'</b></div><div class="muted">'+esc(x.provider||'Tarjeta')+' · '+x.paid+'/'+x.count+' cuotas pagadas · cuota '+money(x.amount)+'</div><button class="secondary" style="margin-top:7px" onclick="payInstallment('+i+')" '+(x.paid>=x.count?'disabled':'')+'>Registrar cuota pagada</button></div>').join(''):'<div class="empty">No hay compras en cuotas registradas.</div>';
+let opts=db.accounts.map(a=>'<option>'+esc(a.name)+'</option>').join('');
+document.getElementById('transferFrom').innerHTML=opts;document.getElementById('transferTo').innerHTML=opts;
 }
 
 render();
-
-if('serviceWorker'in navigator&&location.protocol.startsWith('http')){
-navigator.serviceWorker.register('./sw.js').catch(()=>{});
-}
+showWelcome();
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 </body>
 </html>
