@@ -1,4 +1,3 @@
-
 {
   "id": "./",
   "name": "PlataOK",
@@ -6,8 +5,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f7f8",
-  "theme_color": "#172f38",
+  "background_color": "#dcefe8",
+  "theme_color": "#dcefe8",
   "description": "PlataOK: Tu plata, bajo control. Controlá tus ingresos, gastos, cuentas y ahorros.",
   "icons": [
     {
