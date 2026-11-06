@@ -204,7 +204,10 @@ header small{color:#477663}
 <h2>Bienvenido a PlataOK</h2>
 <div style="color:var(--green);font-weight:700">Tu plata, bajo control</div>
 <div class="welcomeStep" id="welcomeContent"></div>
-<div class="stepDots" id="welcomeDots"></div>
+<div class="stepDots" id="welcomeDots"></div><label style="display:flex;align-items:center;gap:8px;margin:14px 0;font-size:13px;color:var(--muted)">
+<input type="checkbox" id="dontShowWelcome">
+No volver a mostrar esta bienvenida
+</label>
 <div class="actions">
 <button class="secondary" id="welcomeBack" onclick="welcomeMove(-1)">Anterior</button>
 <button id="welcomeNext" onclick="welcomeMove(1)">Siguiente</button>
@@ -270,9 +273,10 @@ const welcomeSteps=[
 let welcomeIndex=0;
 function showWelcome(force=false){
 if(!force&&localStorage.getItem('plataok_welcome_choice_v2')==='1')return;
-welcomeIndex=0;drawWelcome();
-document.getElementById('dontShowWelcome').checked=false;
-document.getElementById('welcomeOverlay').classList.remove('hide')
+welcomeIndex=0;
+drawWelcome();
+document.getElementById('dontShowWelcome').checked=localStorage.getItem('plataok_welcome_choice_v2')==='1';
+document.getElementById('welcomeOverlay').classList.remove('hide');
 }
 function drawWelcome(){
 let s=welcomeSteps[welcomeIndex];
