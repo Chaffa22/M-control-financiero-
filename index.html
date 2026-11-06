@@ -268,9 +268,10 @@ const welcomeSteps=[
 {title:'Tus datos',text:'La información queda guardada en este dispositivo. Exportá copias de respaldo periódicamente para conservarla.'}
 ];
 let welcomeIndex=0;
-function showWelcome(){
-if(localStorage.getItem('plataok_welcome_v1')==='1')return;
+function showWelcome(force=false){
+if(!force&&localStorage.getItem('plataok_welcome_choice_v2')==='1')return;
 welcomeIndex=0;drawWelcome();
+document.getElementById('dontShowWelcome').checked=false;
 document.getElementById('welcomeOverlay').classList.remove('hide')
 }
 function drawWelcome(){
