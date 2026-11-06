@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#172f38">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Mi Control Financiero</title>
+<title>PlataOK</title>
 <style>
 :root{--ink:#172f38;--muted:#687b82;--bg:#f3f6f7;--card:#fff;--line:#e1e8ea;--green:#16845b;--red:#bd4b55;--soft:#eaf1f3}
 *{box-sizing:border-box}
@@ -47,13 +47,15 @@ header small{color:#c5d4d8}
 .footer button{flex:1}
 .hide{display:none!important}
 .tag{font-size:11px;background:var(--soft);padding:3px 7px;border-radius:20px}
+.signature{text-align:center;color:var(--muted);font-size:12px;padding:20px 8px 8px;line-height:1.5}
 </style>
 </head>
 <body>
 
 <header>
-<h1>Mi Control Financiero</h1>
-<small>Tu economía, bajo control</small>
+<h1>PlataOK</h1>
+<small>Tu plata, bajo control</small>
+<div style="font-size:12px;color:#c5d4d8;margin-top:4px">Una app creada por Rafa Velazquez</div>
 <div style="margin-top:15px">
 <small>SALDO DISPONIBLE EN CUENTAS</small>
 <div class="balance" id="balance">$ 0</div>
@@ -185,6 +187,12 @@ header small{color:#c5d4d8}
 
 <div class="note">
 La aplicación no se conecta a tus bancos ni procesa credenciales. Los saldos se actualizan manualmente. Las transferencias propias no se contabilizan como ingreso o gasto.
+</div>
+
+<div class="signature">
+<strong>PlataOK</strong><br>
+Una app creada por Rafa Velazquez<br>
+Tu plata, bajo control.
 </div>
 </section>
 </main>
@@ -708,12 +716,12 @@ ${canEditMove(m)?`
 
 function backup(){
 let blob=new Blob([
-JSON.stringify({app:'Mi Control Financiero',version:2,data:db},null,2)
+JSON.stringify({app:'PlataOK',version:2,data:db},null,2)
 ],{type:'application/json'});
 
 let a=document.createElement('a');
 a.href=URL.createObjectURL(blob);
-a.download='mi-control-financiero-respaldo.json';
+a.download='plataok-respaldo.json';
 a.click();
 URL.revokeObjectURL(a.href);
 }
