@@ -1,5 +1,4 @@
-
-const CACHE = 'plataok-v1';
+const CACHE = 'plataok-v2';
 
 const FILES = [
   './',
