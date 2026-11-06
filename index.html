@@ -7,6 +7,17 @@
 <meta name="theme-color" content="#DDF5E8">
 <link rel="manifest" href="manifest.webmanifest">
 <title>PlataOK</title>
+  .logoMark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.welcomeLogo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 <style>
 :root{
 --ink:#174D3C;--muted:#668078;--bg:#F1F8F4;--card:#fff;
@@ -65,8 +76,12 @@ header small{color:#477663}
 <body>
 
 <header>
-<div class="logo">
-<div class="logoMark">RV</div>
+<div class="logo"><div class="logoMark">
+  <svg viewBox="0 0 64 64" aria-label="RV">
+    <path d="M10 12h20c13 0 18 16 7 23l15 17H37L23 35v17H10V12zm13 11v12h8c7 0 7-12 0-12h-8z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M34 12h12l-9 40H25l9-40z" fill="currentColor"/>
+  </svg>
+</div>
 <div>
 <h1>PlataOK</h1>
 <small>Tu plata, bajo control</small>
@@ -176,8 +191,12 @@ header small{color:#477663}
 </div>
 
 <div class="overlay hide" id="welcomeOverlay">
-<div class="welcome">
-<div class="welcomeLogo">RV</div>
+<div class="welcome"><div class="welcomeLogo">
+  <svg viewBox="0 0 64 64" aria-label="RV">
+    <path d="M10 12h20c13 0 18 16 7 23l15 17H37L23 35v17H10V12zm13 11v12h8c7 0 7-12 0-12h-8z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M34 12h12l-9 40H25l9-40z" fill="currentColor"/>
+  </svg>
+</div>
 <h2>Bienvenido a PlataOK</h2>
 <div style="color:var(--green);font-weight:700">Tu plata, bajo control</div>
 <div class="welcomeStep" id="welcomeContent"></div>
